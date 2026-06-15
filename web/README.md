@@ -22,8 +22,8 @@ root directory to `web/`). The repo-root `Procfile` and `requirements.txt`
 handle the rest:
 
 - `requirements.txt` → `flask`, `pandas`, `numpy`, `gunicorn`
-- `Procfile` → `web: gunicorn --chdir web app:app`
-- Railway injects `$PORT`; gunicorn binds it automatically.
+- `Procfile` → `web: gunicorn --chdir web app:app --bind 0.0.0.0:$PORT`
+- Railway injects `$PORT`; the `--bind` above makes gunicorn listen on it.
 
 Point Railway at the GitHub repo, deploy, and open the generated URL on your
 phone (optionally "Add to Home Screen").
