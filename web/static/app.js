@@ -2,9 +2,22 @@
 
 const form = document.getElementById("form");
 const goBtn = document.getElementById("go");
+const clearBtn = document.getElementById("clear");
 const errorEl = document.getElementById("error");
 const resultsEl = document.getElementById("results");
 let chart = null;
+
+clearBtn.addEventListener("click", () => {
+  document.getElementById("csv_text").value = "";
+  document.getElementById("csv_file").value = "";
+  errorEl.textContent = "";
+  resultsEl.style.display = "none";
+  if (chart) {
+    chart.destroy();
+    chart = null;
+  }
+  document.getElementById("csv_text").focus();
+});
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();

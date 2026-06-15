@@ -50,6 +50,11 @@
       font-size: 1rem; font-weight: 600; cursor: pointer;
     }
     button:disabled { opacity: .5; }
+    button.secondary {
+      flex: 0 0 auto; min-width: 90px;
+      background: transparent; color: var(--muted);
+      border: 1px solid var(--line);
+    }
     .file { font-size: .85rem; color: var(--muted); }
     .file input { color: var(--muted); }
     .error { color: #ffb3ae; font-size: .9rem; margin-top: 10px; white-space: pre-wrap; }
@@ -76,6 +81,7 @@
         </div>
         <div class="row">
           <button type="submit" id="go">Analyze</button>
+          <button type="button" id="clear" class="secondary">Clear</button>
         </div>
         <div class="error" id="error"></div>
       </form>
