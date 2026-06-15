@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#7a2e1e">
+  <title>Brisket Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #1b1715;
+      --card: #262120;
+      --ink: #f3ece8;
+      --muted: #b3a59d;
+      --accent: #d9534f;
+      --temp: #4a9fd4;
+      --line: #3a322f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 16px 16px 40px; }
+    h1 { font-size: 1.4rem; margin: 8px 0 4px; }
+    .sub { color: var(--muted); font-size: .85rem; margin: 0 0 16px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+    label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: 6px; }
+    textarea {
+      width: 100%; min-height: 130px; resize: vertical;
+      background: #1b1715; color: var(--ink);
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: 10px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: .8rem;
+    }
+    .row { display: flex; gap: 10px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+    button {
+      flex: 1 1 auto; min-width: 140px;
+      background: var(--accent); color: #fff; border: 0;
+      border-radius: 10px; padding: 13px 16px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+    }
+    button:disabled { opacity: .5; }
+    .file { font-size: .85rem; color: var(--muted); }
+    .file input { color: var(--muted); }
+    .error { color: #ffb3ae; font-size: .9rem; margin-top: 10px; white-space: pre-wrap; }
+    #results { display: none; }
+    .headline { font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--accent); }
+    .texture { font-size: 1.05rem; margin: 6px 0 14px; }
+    .stats { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
+    .stats b { color: var(--ink); font-weight: 600; }
+    .chart-box { position: relative; height: 320px; margin-top: 8px; }
+    .hint { color: var(--muted); font-size: .8rem; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🔥 Brisket Tracker</h1>
+    <p class="sub">Paste the CHEF iQ data (or upload the CSV) to see how done it is.</p>
+
+    <div class="card">
+      <form id="form">
+        <label for="csv_text">Paste CHEF iQ data</label>
+        <textarea id="csv_text" name="csv_text" placeholder="Tap Copy in the CHEF iQ app, then paste here…"></textarea>
+        <div class="row">
+          <span class="file">or <input type="file" id="csv_file" name="csv_file" accept=".csv,text/csv"></span>
+        </div>
+        <div class="row">
+          <button type="submit" id="go">Analyze</button>
+        </div>
+        <div class="error" id="error"></div>
+      </form>
+    </div>
+
+    <div class="card" id="results">
+      <div class="headline" id="percent">—</div>
+      <div class="texture" id="texture"></div>
+      <div class="stats">
+        <span><b id="duration">—</b> total time</span>
+        <span><b id="peak">—</b> peak internal</span>
+        <span><b id="samples">—</b> samples</span>
+      </div>
+      <div class="chart-box"><canvas id="chart"></canvas></div>
+      <p class="hint">Red = cumulative % done (right axis). Blue = internal temp °F (left axis). Dashed line = 100% ideal.</p>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
