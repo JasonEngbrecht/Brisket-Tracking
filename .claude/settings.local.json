@@ -20,7 +20,17 @@
       "Bash(git --version)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=\"engbrech\" -c user.email=\"engbrech@stolaf.edu\" commit -m \"Initial commit\")"
+      "Bash(git -c user.name=\"engbrech\" -c user.email=\"engbrech@stolaf.edu\" commit -m \"Initial commit\")",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" --version)",
+      "Bash(echo \"READY\")",
+      "Bash(ls \"/c/Program Files/GitHub CLI/\" 2>&1; echo \"---\"; \"/c/Program Files/GitHub CLI/gh.exe\" --version 2>&1 | head -1)",
+      "PowerShell($p = @\\(\"$env:ProgramFiles\\\\GitHub CLI\\\\gh.exe\",\"$env:LOCALAPPDATA\\\\Programs\\\\GitHub CLI\\\\gh.exe\",\"$env:ProgramW6432\\\\GitHub CLI\\\\gh.exe\"\\) | Where-Object { Test-Path $_ }; if \\($p\\) { $p; & $p[0] --version } else { Get-ChildItem -Path \"$env:ProgramFiles\",\"$env:LOCALAPPDATA\\\\Microsoft\\\\WinGet\\\\Packages\" -Filter gh.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 3 -ExpandProperty FullName })",
+      "Bash(seq 1 20)",
+      "Bash([ -f \"/c/Program Files/GitHub CLI/gh.exe\" ])",
+      "Bash(sleep 3)",
+      "Bash(ls \"/c/Program Files/GitHub CLI/\")",
+      "PowerShell(\"--- cmdkey entries \\(gh/github\\) ---\"; cmdkey /list 2>&1 | Select-String -Pattern \"gh:|github\" | Out-String; \"--- GH_TOKEN env ---\"; if \\($env:GH_TOKEN\\) { \"GH_TOKEN is set\" } else { \"GH_TOKEN not set\" }; \"--- config dir contents ---\"; $d = \"$env:AppData\\\\GitHub CLI\"; if \\(Test-Path $d\\) { Get-ChildItem $d -Force | Select-Object -ExpandProperty Name } else { \"config dir does not exist: $d\" }; \"--- AppData resolves to ---\"; $env:AppData)",
+      "PowerShell(\"--- git real path ---\"; \\(Get-Command git\\).Source; \"--- XDG_CONFIG_HOME ---\"; if \\($env:XDG_CONFIG_HOME\\) { \"SET: $env:XDG_CONFIG_HOME\"; $h = Join-Path $env:XDG_CONFIG_HOME 'gh\\\\hosts.yml'; \"looking for: $h => \" + \\(Test-Path $h\\) } else { \"not set\" }; \"--- GH_CONFIG_DIR ---\"; if \\($env:GH_CONFIG_DIR\\) { \"SET: $env:GH_CONFIG_DIR\" } else { \"not set\" }; \"--- search any hosts.yml under user profile ---\"; Get-ChildItem -Path $env:USERPROFILE -Filter hosts.yml -Recurse -ErrorAction SilentlyContinue -Force | Select-Object -First 5 -ExpandProperty FullName)"
     ]
   }
 }
