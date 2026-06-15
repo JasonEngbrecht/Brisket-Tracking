@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:smoketrailsbbq.com)",
+      "Bash(python -c \"import pandas, numpy, matplotlib, tkinter; print\\('all libs OK:', pandas.__version__, numpy.__version__, matplotlib.__version__\\)\")",
+      "Bash(python -c \"import pandas, numpy, matplotlib, tkinter; print\\('all libs OK', pandas.__version__, numpy.__version__, matplotlib.__version__\\)\")",
+      "PowerShell($cmds = 'py','python3','python'; foreach\\($c in $cmds\\){ $p = Get-Command $c -ErrorAction SilentlyContinue; if\\($p\\){ \"$c -> $\\($p.Source\\)\" } }; \"---\"; py -3 --version 2>&1; \"---list---\"; py -0p 2>&1)",
+      "PowerShell(py -3 -c \"import pandas, numpy, matplotlib, tkinter; print\\('OK', pandas.__version__, numpy.__version__, matplotlib.__version__\\)\" 2>&1)",
+      "Bash(seq 1 60)",
+      "Bash([ -s \"/c/Users/engbrech/AppData/Local/Temp/claude/C--Users-engbrech-Python-Brisket-Tracking/bafec0e4-9b07-43ad-aa4a-f83b4082ebf3/tasks/bq123peel.output\" ])",
+      "Bash(echo \"=== output ready ===\")",
+      "Read(//c/Users/engbrech/AppData/Local/Temp/claude/C--Users-engbrech-Python-Brisket-Tracking/bafec0e4-9b07-43ad-aa4a-f83b4082ebf3/tasks/**)",
+      "Bash(break)",
+      "Bash(grep -q 'Build complete\\\\|completed successfully\\\\|ERROR\\\\|Traceback' /c/Users/engbrech/AppData/Local/Temp/claude/C--Users-engbrech-Python-Brisket-Tracking/bafec0e4-9b07-43ad-aa4a-f83b4082ebf3/tasks/boaqxzfc3.output)",
+      "Bash(sleep 5)",
+      "Bash(tail -n 3 /c/Users/engbrech/AppData/Local/Temp/claude/C--Users-engbrech-Python-Brisket-Tracking/bafec0e4-9b07-43ad-aa4a-f83b4082ebf3/tasks/boaqxzfc3.output)",
+      "PowerShell($p = Start-Process -FilePath \".\\\\Run Brisket Tracker.bat\" -PassThru; Start-Sleep -Seconds 6; $py = Get-Process python -ErrorAction SilentlyContinue; if\\($py\\){ \"OK - GUI launched with hover control, no startup crash\"; Stop-Process -Id $py.Id -Force; Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue } else { \"FAILED - no python process\"; Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue })",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=\"engbrech\" -c user.email=\"engbrech@stolaf.edu\" commit -m \"Initial commit\")"
+    ]
+  }
+}
